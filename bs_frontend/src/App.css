@@ -18,6 +18,47 @@
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
 
+.products{
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  margin: 25px;
+}
+.cart{
+  width: 100%;
+  height: auto;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: left;
+  padding: 20px;
+  gap: 20px;
+  /* background-color: beige; */
+
+}
+.show{
+  display: flex;
+}
+.hide{
+  display: none;
+
+}
+.contents{
+  width: 90%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  /* border: solid 1px white; */
+  background-color: beige;
+  padding: 20px;
+  gap: 10px;
+  border-radius: 10px;
+}
 @keyframes logo-spin {
   from {
     transform: rotate(0deg);
