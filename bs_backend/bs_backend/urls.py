@@ -20,5 +20,5 @@ from bs_api.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api', productView.as_view(), name="product")
+    path('', productView.as_view(), name="product")
 ]

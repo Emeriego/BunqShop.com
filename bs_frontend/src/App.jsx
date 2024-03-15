@@ -21,7 +21,7 @@ function App() {
   const qtyFlag = useSelector(state => state.cart.totalQty)
   const availProds = useSelector(state => state.products.availProds)
 
-
+  // ANOTHER METHOD TO FETCH API DATA
   // const fetchDataWithFetch =() =>{
   //   return fetch("http://localhost:8000/")
   //   .then((response) => response.json())
