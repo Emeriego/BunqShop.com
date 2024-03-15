@@ -1,9 +1,11 @@
 import { useState } from 'react'
 import './App.css'
 import Product from './components/Product'
-import {actions, actions2} from "./store/index"
+import {actions, actions2, cartActions, prodActions} from "./store/index"
 import { useSelector, useDispatch } from 'react-redux'
 import CartItem from './components/cartItem'
+import { useEffect } from 'react'
+import axios from "axios"
 
 
 
@@ -14,42 +16,77 @@ function App() {
   const h = useSelector(state => state.h)
   const show = useSelector(state => state.toggleMenu.toggleMenu)
   console.log(show);
-  const cart = useSelector(state => state.cartSlice.cart)
+  const cart = useSelector(state => state.cart.cartItems)
+  const totalPrice = useSelector(state => state.cart.totalPrice)
+  const qtyFlag = useSelector(state => state.cart.totalQty)
+  const availProds = useSelector(state => state.products.availProds)
 
 
-  const prods = [
-    {
-      name: "Camon X",
-      price: 200,
-      color: "grey",
-      store: "Mosaic Stores",
-      img: "cam1.jpeg"
-    },
-    {
-      name: "Zavy Pro",
-      price: 400,
-      color: "grey",
-      store: "Apple Stores",
-      img: "cam2.jpeg"
+  // const fetchDataWithFetch =() =>{
+  //   return fetch("http://localhost:8000/")
+  //   .then((response) => response.json())
+  //   .then((data) => {
+  //     dispatch(prodActions.fetch(data))
 
-    },
-    {
-      name: "Serio MaX",
-      price: 100,
-      color: "black",
-      store: "Junnt Stores",
-      img: "cam3.jpeg"
+  //     // console.log(data)
+  //   })
 
-    },
-    {
-      name: "Iphone 14",
-      price: 450,
-      color: "silver",
-      store: "Chain Stores",
-      img: "cam4.jpeg"
+  // }
 
-    },
-  ]
+  const fetchDataWithAxios =() =>{
+    return axios("http://localhost:8000/")
+    .then((response) => {
+      dispatch(prodActions.fetch(response.data))
+
+      // console.log(data)
+    })
+
+  }
+  useEffect(() => {
+    // fetchDataWithFetch();
+    fetchDataWithAxios();
+
+
+  }, [])
+
+
+  // const prods = [
+  //   {
+  //     id: 1,
+  //     name: "Camon X",
+  //     price: 200,
+  //     color: "grey",
+  //     store: "Mosaic Stores",
+  //     img: "cam1.jpeg"
+  //   },
+  //   {
+  //     id: 2,
+  //     name: "Zavy Pro",
+  //     price: 400,
+  //     color: "grey",
+  //     store: "Apple Stores",
+  //     img: "cam2.jpeg"
+
+  //   },
+  //   {
+  //     id: 3,
+  //     name: "Serio MaX",
+  //     price: 100,
+  //     color: "black",
+  //     store: "Junnt Stores",
+  //     img: "cam3.jpeg"
+
+  //   },
+  //   {
+  //     id: 4,
+  //     name: "Iphone 14",
+  //     price: 450,
+  //     color: "silver",
+  //     store: "Chain Stores",
+  //     img: "cam4.jpeg"
+
+  //   },
+  // ]
 
   // const increament =() => {
   //   dispatch(actions.increament())
@@ -67,20 +104,25 @@ function App() {
   const toggle = () => {
     dispatch(actions2.toggle())
   }
+
+  const clearCart =()=>{
+    dispatch(cartActions.clearCart())
+  }
   return (
     <>
+    <div className="top_bar">
+     <div className="qty_flag">{qtyFlag}</div>
+
+    </div>
+
     <div className="products">
 
       {
-        prods.map(prod => {
+        availProds.map(prod => {
+          console.log("from App", availProds, prod)
           return (
           <Product 
-            name = {prod.name}
-            price = {prod.price}
-            color = {prod.color}
-            store = {prod.store}
-            img = {prod.img}
-
+            product = {prod}
           />
           )
           
@@ -97,18 +139,20 @@ function App() {
           cart.map(item => {
             return (
               <CartItem 
-                itemName = {item.name}
-                itemPrice = {item.price}
-                itemQty = {item.qty}
-                itemColor = {item.color}
+                item = {item}
+                
               />
 
             )
           })
           }
-          
-          <div className="total"><h3>Total:</h3></div>
+          <div className="total"><h3>{`${cart.length == 0? "Your cart is empty" : "Total Price: "+totalPrice }`}</h3></div>
 
+          {
+            cart.length > 0? <button onClick={clearCart}>Empty Cart</button> : ""
+          }
+          
+          
         </div>
 
       </div>

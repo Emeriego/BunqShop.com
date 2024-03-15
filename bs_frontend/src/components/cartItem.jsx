@@ -1,17 +1,27 @@
 import React from "react";
 import "./cartItem.css"
+import { useDispatch} from "react-redux";
+import { cartActions } from "../store";
 
 
-const cartItem = ()=>{
+const cartItem = ({item})=>{
+    const dispatch = useDispatch();
+
+    const addItem =() => {
+        dispatch(cartActions.addItem(item))
+    }
+    const removeItem = () => {
+        dispatch(cartActions.removeItem(item))
+    }
 
     return (
         <div className="item_wrap">
-            <div className="name">Item:</div>
-            <div className="price">Price:</div>
-            <div className="qty">Quantity:</div>
-            <div className="amount">Subtotal:</div>
-            <button>+</button>
-            <button>-</button>
+            <div className="name">Item: <span>{item.name}</span></div>
+            <div className="price">Price: <span>{item.price}</span></div>
+            <div className="qty">Quantity:<span>{item.qty}</span></div>
+            <div className="amount">Subtotal:<span>{item.subtotal}</span></div>
+            <button onClick={addItem}>+</button>
+            <button onClick={removeItem}>-</button>
         </div>
     )
 
