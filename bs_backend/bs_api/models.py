@@ -32,12 +32,14 @@ class Product(models.Model):
     name = models.CharField(max_length=100)
     price = models.IntegerField(default=0)
     color = models.CharField(max_length=100)
-    store = models.CharField(max_length=100)
     store = models.ForeignKey(Store, on_delete=models.CASCADE)
     description = models.TextField(default="regular sample")
     img = models.CharField(max_length=100, default="cam1.jpeg")
+    category = models.CharField(max_length=100, default="Furnitures")
+    is_featured = models.BooleanField(default=False)
     created_at = models.DateTimeField(default=datetime.now, blank=True)
     updated_at = models.DateTimeField(default=datetime.now, blank=True)
+    
 
     def clearData(self):
         Product.objects.all().delete()
@@ -45,6 +47,7 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+
 
 class Stock(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)

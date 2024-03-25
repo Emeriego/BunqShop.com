@@ -9,13 +9,14 @@ from .serializer import *
 class productView(APIView):
 
     def get(self, request):
-        products = Product.objects.all()
+        productsWithStore= Product.objects.all()
+        # productsWithStore = Product.objects.select_related('store')
         # products = [{"name": output.name, "price": output.price} for output in results]
-        products = ProductSerializers(products, many=True)
+        products = ProductSerializer(productsWithStore, many=True)
         return Response(products.data)
     
     def post(self, request):
-        products = ProductSerializers(data = request.data)
+        products = ProductSerializer(data = request.data)
         if products.is_valid(raise_exception = True):
             products.save()
         return Response(products.data)

@@ -84,6 +84,7 @@ function App() {
                                 />
 
                             )
+                            
                         })
                     }
                     <div className="total"><h3>{`${cart.length == 0 ? "Your cart is empty" : "Total Price: " + totalPrice}`}</h3></div>

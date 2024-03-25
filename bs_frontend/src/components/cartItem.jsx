@@ -15,13 +15,14 @@ const cartItem = ({item})=>{
     }
 
     return (
+        
         <div className="item_wrap">
             <div className="name">Item: <span>{item.name}</span></div>
             <div className="price">Price: <span>{item.price}</span></div>
             <div className="qty">Quantity:<span>{item.qty}</span></div>
             <div className="amount">Subtotal:<span>{item.subtotal}</span></div>
-            <button onClick={addItem}>+</button>
-            <button onClick={removeItem}>-</button>
+            <button className="btn btn-success" onClick={addItem}>+</button>
+            <button className="btn btn-warning" onClick={removeItem}>-</button>
         </div>
     )
 
