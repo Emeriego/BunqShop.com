@@ -61,12 +61,13 @@ class Stock(models.Model):
 class CartItem(models.Model):
     product = models.ForeignKey(Product, on_delete = models.CASCADE)
     person = models.ForeignKey(Person, on_delete=models.CASCADE)
-    qty = models.IntegerField(max_length=1000)
+    qty = models.IntegerField()
     added_at = models.DateTimeField(default=datetime.now, blank=True)
     updated_at = models.DateTimeField(default=datetime.now, blank=True)
 
     def __str__(self):
-        return self.product
+        return str(self.product)
+
     
 class Transaction(models.Model):
     type = models.CharField(max_length=100)

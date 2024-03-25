@@ -37,7 +37,7 @@ function Home2() {
 
     // }
 
-    const fetchDataWithAxios = () => {
+    const fetchCraftsWithAxios = () => {
         return axios("http://localhost:8000/")
             .then((response) => {
                 dispatch(prodActions.fetch(response.data))
@@ -45,9 +45,10 @@ function Home2() {
             })
 
     }
+   
     useEffect(() => {
-        // fetchDataWithFetch();
-        fetchDataWithAxios();
+        // fetchCraftsWithFetch();
+        fetchCraftsWithAxios();
 
 
     }, [])

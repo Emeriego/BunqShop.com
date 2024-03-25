@@ -6,7 +6,6 @@ import Contact from './pages/Contact';
 import NotFound from './pages/NotFound';
 import PageLayout from './pages/PageLayout';
 import AllCrafts from './pages/AllCrafts'
-import Home2 from './pages/Home';
 
 const App = () => {
     return (

@@ -3,12 +3,34 @@ import React from "react";
 import { cartActions } from "../store";
 // import cam1 from "../assets/cam1.jpeg"
 import { useDispatch } from "react-redux";
+import axios from "axios"
+
 
 const CraftBox = ({ craft }) => {
 
     const dispatch = useDispatch()
-    const addItem = () => {
-        dispatch(cartActions.addItem(craft))
+    // console.log(craft)
+
+    
+    const addItem =(craft) => {
+
+        const cartData = {
+            product: { product: craft.id, person: 2, qty: 1 }
+            // Add more key-value pairs as needed
+        };
+        console.log(cartData)
+        return axios.post("http://localhost:8000/add_cart_item/", cartData.product)
+            .then((response) => {
+                // dispatch(prodActions.fetch(response.data));
+                dispatch(cartActions.addItem(craft))
+                // console.log("item to be posted "+ response.data)
+
+                // Handle response if needed
+            })
+            .catch((error) => {
+                // Handle error if needed
+                console.error("Error:", error);
+            });
     }
     // console.log(product)
 
@@ -39,7 +61,7 @@ const CraftBox = ({ craft }) => {
                         New
                     </span>
                 </div>
-                <button onClick={addItem} className='btn buy'>Buy Now</button>
+                <button onClick={() => addItem(craft)} className='btn buy'>Buy Now</button>
             {/* </a> */}
         </div>
 

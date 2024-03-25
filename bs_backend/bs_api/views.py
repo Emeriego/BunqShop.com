@@ -20,3 +20,11 @@ class productView(APIView):
         if products.is_valid(raise_exception = True):
             products.save()
         return Response(products.data)
+
+class addCartItemView(APIView):
+    def post(self, request, format=None):
+        serializedCartItem = CartItemSerializer(data=request.data)
+        if serializedCartItem.is_valid():
+            serializedCartItem.save()
+            return Response(serializedCartItem.data)
+        return Response(serializedCartItem.errors)
