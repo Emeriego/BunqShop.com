@@ -1,17 +1,12 @@
 from django.db import models
 from datetime import datetime
+from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
-class Person(models.Model):
-    fname = models.CharField(max_length=100)
-    lname = models.CharField(max_length=100)
-    username = models.CharField(max_length=100)
-    password = models.CharField(max_length=100)
+class Person(AbstractUser):
     address = models.CharField(max_length=250)
     phone = models.CharField(max_length=100)
     img = models.CharField(max_length=100, default="default_avatar.jpeg")
-    created_at = models.DateTimeField(default=datetime.now, blank=True)
-    updated_at = models.DateTimeField(default=datetime.now, blank=True)
 
     def __str__(self):
         return self.fname

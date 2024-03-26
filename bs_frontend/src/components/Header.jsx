@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
+import {Link } from 'react-router-dom'
 // import { actions, actions2, cartActions, prodActions } from "../store/index"
 
 
@@ -12,11 +13,11 @@ const Header = () => {
         <div className='hero_area2 position-fixed w-100 z-index-1090'>
             <header className="header_section">
                 <nav className="navbar navbar-expand-lg custom_nav-container pb-0 position-sticky">
-                    <a className="navbar-brand" href="index.html">
+                    <Link className="navbar-brand" to="/">
                         <span>
                             craftHUB
                         </span>
-                    </a>
+                    </Link>
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span className=""></span>
                     </button>
@@ -24,34 +25,34 @@ const Header = () => {
                     <div className="collapse navbar-collapse navbar-dark bg-dark" id="navbarSupportedContent">
                         <ul className="navbar-nav">
                             <li className="nav-item active">
-                                <a className="nav-link" href="index.html">Home <span className="sr-only">(current)</span></a>
+                                <Link className="nav-link" to="/">Home <span className="sr-only">(current)</span></Link>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="shop.html">
+                                <Link className="nav-link" to="#">
                                     Shop
-                                </a>
+                                </Link>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="why.html">
+                                <Link className="nav-link" to="#">
                                     Why Us
-                                </a>
+                                </Link>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="testimonial.html">
+                                <Link className="nav-link" to="#">
                                     Testimonial
-                                </a>
+                                </Link>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="contact.html">Contact Us</a>
+                                <Link className="nav-link" to="/contact">Contact</Link>
                             </li>
                         </ul>
                         <div className="user_option">
-                            <a href="">
+                            <Link to="/login">
                                 <i className="fa fa-user" aria-hidden="true"></i>
                                 <span>
                                     Login
                                 </span>
-                            </a>
+                            </Link>
                             <div className="cart-bag">
                                 <button type="button" class="btn btn-warning position-relative" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                                     <i className="fa fa-shopping-cart" aria-hidden="true" style={{ color: 'white' }}></i>

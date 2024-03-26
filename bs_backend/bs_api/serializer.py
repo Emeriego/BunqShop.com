@@ -4,7 +4,16 @@ from .models import *
 class PersonSerializer(serializers.ModelSerializer):
     class Meta:
         model = Person
-        fields = ['fname']
+        fields = ['fname', 'lname', 'username', 'address', 'phone', 'img']
+
+class LoginSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Person
+        fields = ['username', 'password']
+        extra_kwargs = {'password': {'write_only': True}}  # To ensure password is not returned in response
+
+class LogoutSerializer(serializers.Serializer):
+    pass
 
 class StoreSerializer(serializers.ModelSerializer):
     store_owner = serializers.CharField(source='owner.fname', read_only=True)

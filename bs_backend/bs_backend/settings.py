@@ -14,6 +14,16 @@ from pathlib import Path
 from rest_framework.permissions import AllowAny
 
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        # other authentication classes if needed
+    ),
+}
+
+
+AUTH_USER_MODEL = 'bs_api.Person'
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 

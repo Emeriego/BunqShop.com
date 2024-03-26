@@ -2,10 +2,11 @@ import React from 'react';
 import { BrowserRouter, Route, Link, Routes } from 'react-router-dom';
 import Home from './pages/Home';
 import About from './pages/About';
-import Contact from './pages/Contact';
+import Contact from './pages/Login';
 import NotFound from './pages/NotFound';
 import PageLayout from './pages/PageLayout';
 import AllCrafts from './pages/AllCrafts'
+import Login from './pages/Login';
 
 const App = () => {
     return (
@@ -18,6 +19,7 @@ const App = () => {
                 <Routes>
                     <Route path='/' element={<PageLayout />} >
                         <Route path="/about" element={<About />} />
+                        <Route path="/login" element={<Login />} />
                         <Route path="/contact" element={<Contact />} />
                         <Route path='/allcrafts' element={<AllCrafts />} />
                         <Route path="*" element={<NotFound />} /> 
